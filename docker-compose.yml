@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+
+  minio:
+  
+    image: minio/minio # Pull the minio image from docker hub
+    
+    command: server /export # minIO will store data in server /export
+    
+    ports:
+      - "9000:9000"
+      
+    environment:
+      MINIO_ACCESS_KEY: "accesskey123"
+      MINIO_SECRET_KEY: "secretkey123"
+      
+    volumes:
+      - minio-data:/export
+      
+    networks:
+      - mynetwork
+      
+    # Check the health of the minio server every 30s by running the command below
+    healthcheck:
+      test: ["CMD", "curl", "--silent", "--fail", "http://localhost:9000/minio/health/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s # Do a healthcheck after 5 seconds initially then every 30s
+      
+      
+  flaskapp:
+  
+    # Build the flask app in the current directory
+    build: .
+    
+    # Publish the port 5000 of container to 5000 of host
+    ports:
+      - "5000:5000"
+      
+    # Check the health of the flask app every 30 seconds
+    healthcheck:
+      test: ["CMD", "curl", "--silent", "--fail", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    
+    environment:
+      MINIO_ACCESS_KEY: "accesskey123"
+      MINIO_SECRET_KEY: "secretkey123"
+
+      
+    networks:
+      - mynetwork
+      
+    depends_on:
+      minio:
+        condition: service_healthy
+
+      
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  minio-data:
