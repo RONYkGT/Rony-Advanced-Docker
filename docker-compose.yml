@@ -16,7 +16,7 @@ services:
       MINIO_SECRET_KEY: "secretkey123"
       
     volumes:
-      - minio-data:/export
+      - minio-data:/export # Set up volume to store bucket contents inside host 
       
     networks:
       - mynetwork
@@ -56,12 +56,12 @@ services:
       
     depends_on:
       minio:
-        condition: service_healthy
+        condition: service_healthy # Makes sure minio is running well first
 
       
 networks:
   mynetwork:
-    driver: bridge
+    driver: bridge # Set up bridge network between containers (isolated)
 
 volumes:
-  minio-data:
+  minio-data: # Set up volume to store bucket contents inside host 
