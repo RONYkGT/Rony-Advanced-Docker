@@ -12,6 +12,10 @@ This is the assignement for session 3 about advanced docker commands and docker 
 - `networks`: Defines the network system used between containers. *Here we chose bridge which is the most isolated one*.
 
 - `healthcheck`: Regularly checks the container health every interval specified. *For example here we check the health of the flask app every 30 seconds*.
+  
+## Efficient flaskapp Dockerfile:
+
+`api/Dockerfile` was enhanced and made more efficient by working with multi-stage builds and using cache efficiently. Check the comments inside it for more details.
 
 ## Usage:
 1. Start by cloning the repository to your system.
