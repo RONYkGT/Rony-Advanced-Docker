@@ -15,7 +15,7 @@ This is the assignement for session 3 about advanced docker commands and docker 
   
 ## Efficient flaskapp Dockerfile:
 
-`api/Dockerfile` was enhanced and made more efficient by working with multi-stage builds and using cache efficiently. Check the comments inside it for more details.
+`Dockerfile` was enhanced and made more efficient by working with multi-stage builds and using cache efficiently. Check the comments inside it for more details.
 
 ## Usage:
 1. Start by cloning the repository to your system.
