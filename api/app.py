@@ -19,6 +19,7 @@ bucket_name = "mybucket"
 
 def store():
     # Accepts files and JSON uploads
+
     if request.files:
         # Handle files upload
         try:
@@ -36,6 +37,8 @@ def store():
         except S3Error as e:
             return jsonify({"error": str(e)}), 500
         
+    # ---
+    
     elif request.json:
         # Handle JSON data
         data = request.json
