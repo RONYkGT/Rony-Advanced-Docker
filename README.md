@@ -25,4 +25,9 @@ This is the assignement for session 3 about advanced docker commands and docker 
     docker compose up --build
     ```
 
-3. Open `add-file-here.html` in a browser and upload any file. All files will be saved and never lost even after restarting the container. *(You can also send JSON objects using curl)*
+3. Open `add-file-here.html` in a browser and upload any file. All files will be saved and never lost even after restarting the container.
+
+   You can also upload JSON with a message using the following command:
+   ```terminal
+   curl -X POST -H "Content-Type: application/json" -d '{"name": "FileName.txt", "content": "Message here"}' http://localhost:5000/store
+   ```
