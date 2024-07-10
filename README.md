@@ -31,3 +31,9 @@ This is the assignement for session 3 about advanced docker commands and docker 
    ```terminal
    curl -X POST -H "Content-Type: application/json" -d '{"name": "FileName.txt", "content": "Message here"}' http://localhost:5000/store
    ```
+
+4. To access uploaded files, log in to the minIO console on the webUI IP displayed in the terminal after you run docker compose, with the following credentials:
+    ```
+    username: accesskey123
+    password: secretkey123
+    ```
